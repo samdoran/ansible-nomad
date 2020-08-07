@@ -1,6 +1,5 @@
 nomad_os_packages:
-  - cgroup-bin
   - curl
   - git
-  - libcgroup1
+  - python3-libselinux
   - unzip

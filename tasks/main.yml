@@ -4,8 +4,18 @@
 - name: Include checks/asserts
   include: asserts.yml
 
-- name: Include OS variables
-  include_vars: "{{ ansible_os_family }}.yml"
+- name: Include distribution specific variables
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_version }}.yml"
+        - "{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.distribution }}.yml"
+        - "{{ ansible_facts.os_family }}.yml"
+        - default.yml
+      paths:
+        - vars
 
 # Gathers facts (bind address) from servers not currently targeted.
 # 'delegate_facts' is currently rather buggy in Ansible so this might not

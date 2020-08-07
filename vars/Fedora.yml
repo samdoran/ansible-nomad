@@ -1,0 +1,6 @@
+# Only Fedora >= 30 is supported
+nomad_os_packages:
+  - curl
+  - git
+  - python3-libselinux
+  - unzip

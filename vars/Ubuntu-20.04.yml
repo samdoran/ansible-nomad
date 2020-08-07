@@ -1,5 +1,5 @@
 nomad_os_packages:
-  - cgroup-bin
+  - cgroup-tools
   - curl
   - git
   - libcgroup1
